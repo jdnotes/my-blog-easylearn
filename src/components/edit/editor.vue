@@ -1,11 +1,11 @@
 <template>
-  <div class="tags">
+  <div class="editor">
   </div>
 </template>
 
 <script>
   export default {
-    name: 'tags',
+    name: 'Editor',
     data() {
       return {
         msg: 'Welcome to Your Vue.js App'

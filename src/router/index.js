@@ -6,7 +6,8 @@ import Info from '@/components/info/info.vue'
 import About from '@/components/about/about.vue'
 import Tags from '@/components/tags/tags.vue'
 import TagList from '@/components/tags/taglist.vue'
-import editor from '@/components/edit/editor.vue'
+import Contact from '@/components/contact/contact.vue'
+import Editor from '@/components/edit/editor.vue'
 import NotFound from '@/components/pub/404.vue'
 
 Vue.use(Router)
@@ -44,9 +45,14 @@ export default new Router({
       component: TagList
     },
     {
+      path: '/contact',
+      name: 'contact',
+      component: Contact
+    },
+    {
       path: '/editor',
       name: 'editor',
-      component: editor
+      component: Editor
     },
     {
       path: '*',

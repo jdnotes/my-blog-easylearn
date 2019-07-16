@@ -1,8 +1,9 @@
 <template>
   <div class="app">
-    <Nav></Nav>
+    <nav class="border-bottom">
+      <Nav></Nav>
+    </nav>
     <Search></Search>
-
     <section class="uk-section">
       <div class="uk-container">
         <div class="uk-grid-match" data-uk-grid>
@@ -25,7 +26,6 @@
               </div>
             </div>
           </div>
-
           <div class="uk-width-1-3@m">
             <div class="border-frame">
               <ul class="uk-child-width-expand" data-uk-tab>
@@ -53,7 +53,6 @@
             </div>
           </div>
         </div>
-
         <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-grid-match" data-uk-grid>
           <div v-for="item in articleList">
             <div class="uk-card uk-card-default">
@@ -76,12 +75,10 @@
             </div>
           </div>
         </div>
-
         <Pager :totalRecords="total" :currentPage='page.currentPage' @pageChange="page.pageChange"
                v-if="page.pageShow"></Pager>
       </div>
     </section>
-
     <Footer></Footer>
   </div>
 </template>

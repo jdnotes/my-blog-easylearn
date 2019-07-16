@@ -5,7 +5,7 @@
 </template>
 <script>
   export default {
-    name: 'Nav',
+    name: 'template',
     data() {
       return {
         msg: ''
