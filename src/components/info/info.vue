@@ -1,257 +1,55 @@
 <template>
   <div class="tags">
     <nav class="border-bottom">
-      <div class="uk-container">
-        <div data-uk-navbar>
-          <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo uk-text-small" href="index.html">SOUTIEN</a>
-          </div>
-          <div class="uk-navbar-right">
-
-            <ul class="uk-navbar-nav uk-visible@m">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="faq.html">Faq</a></li>
-              <li class="uk-active"><a href="blog.html">Blog</a></li>
-              <li><a href="changelog.html">Changelog</a></li>
-              <li><a href="download.html">Download</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <div class="uk-navbar-item uk-visible@m">
-              <a href="#" class="uk-button uk-button-primary">Get Started</a>
-            </div>
-
-            <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-navbar-toggle-icon data-uk-toggle></a>
-          </div>
-        </div>
-      </div>
+      <Inav></Inav>
     </nav>
-
-    <div class="uk-container">
-      <div class="uk-section uk-section-xsmall border-bottom">
-        <div data-uk-grid>
-          <div class="uk-width-2-3@m uk-flex uk-flex-middle">
-            <ul class="uk-breadcrumb">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><span>Onboarding your first developer hire as an Entrepreneur</span></li>
-            </ul>
-          </div>
-          <div class="uk-width-1-3@m">
-            <form class="uk-search uk-search-default uk-width-1-1 awesomplete">
-              <a href="" class="uk-search-icon-flip" data-uk-search-icon></a>
-              <input id="search" class="uk-search-input uk-search-default uk-width-1-1 uk-form-large" type="search"
-                     placeholder="Search" autocomplete="off" data-minchars="1" data-maxitems="30">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <Search></Search>
     <section class="uk-section">
       <div class="uk-container">
         <div class="uk-grid-large" data-uk-grid>
-
-          <div class="uk-width-1-3@m uk-flex uk-flex-middle">
-            <div>
-              <h1 class="uk-article-title uk-margin-medium-bottom">Onboarding your first developer hire as an
-                Entrepreneur</h1>
-              <div class="uk-flex uk-flex-middle">
-                <img class="uk-border-circle" src="img/avatar.jpg" width="40" height="40" alt="John Brown">
-                <p class="uk-margin-small-left uk-article-meta">By <a href="#">John Brown</a> on 12 April 2019 in <a
-                  href="#">Startup</a></p>
+          <div class="uk-width-expand@m padding-right@m padding-large-right@l">
+            <article class="uk-article">
+              <mavon-editor v-html="articleHtml"/>
+            </article>
+          </div>
+          <div class="uk-width-1-4@m uk-visible@m">
+            <div data-uk-sticky="offset: 100; media: @m; bottom: true">
+              <div class="uk-position-relative">
+                <div class="divider-left">
+                  <div>
+                    <ul class="uk-nav uk-nav-default">
+                      <li v-for="item in recentList">
+                        <a href="javascript: void(0)" @click="goInfo(item.id)">{{item.title}}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="uk-width-2-3@m">
-            <img src="img/image1.jpg" alt="Lorem ipsum">
-          </div>
-
         </div>
       </div>
-
-      <div class="uk-container uk-container-xsmall uk-margin-large-top">
-        <article class="uk-article">
-          <div class="article-content">
-
-            <h2>History of private equity and venture capital</h2>
-
-            <p>Because of the lack of information, high uncertainty, the need to make decisions quickly, founders of
-              startups use lots of heuristics and exhibit biases in their startup actions. Biases and heuristics are
-              parts of our cognitive toolboxes in the decision making process, and they help us to take a decision as
-              quick as possible under uncertainty, but sometimes become erroneous and fallacious.</p>
-
-            <h3>Early history of private equit</h3>
-
-            <ul>
-              <li>Post-money valuation</li>
-              <li>High-yield debt</li>
-              <li>Venture capital financing</li>
-              <li>Liquidation preference</li>
-            </ul>
-
-            <p>Entrepreneurs often become not only overconfident about their startups but also about their personal
-              influence on an outcome (case of illusion of control). Entrepreneurs tend to believe they have more degree
-              of control they have over events, discounting the role of luck. Below are some of the most important
-              decision biases of entrepreneurs in start up a new business.</p>
-
-            <h2>Knowledge representation and reasoning</h2>
-
-            <p>Many entrepreneurs seek feedback from mentors in creating their startups. Mentors guide founders and
-              impart entrepreneurial skills and may increase self-efficacy of the nascent entrepreneurs.</p>
-
-            <img src="img/image4.jpg" width="800" height="500" alt="Some alt tag">
-
-            <p>Design thinking is used to understand the customers' need in an engaged manner. Design thinking and
-              customer development can be biased, because they do not remove the risk of bias because the same biases
-              will manifest themselves in the sources of information, the type of information sought, and the
-              interpretation of that information.</p>
-
-            <blockquote cite="#">
-              <p class="uk-margin-small-bottom">The blockquote element represents content that is quoted from another
-                source, optionally with a citation which must be within a footer or cite element.</p>
-              <footer>Someone famous in <cite><a href="#">Source Title</a></cite></footer>
-            </blockquote>
-
-            <p>Startups use a number of action principles (lean startup) to generate evidence as quickly as possible to
-              reduce the downside effect of decision biases such as escalation of commitment, overconfidence, and
-              illusion of control.</p>
-          </div>
-
-          <div class="uk-flex uk-flex-middle uk-flex-center uk-margin-large-top">
-            <a href="https://twitter.com/" data-uk-icon="icon: twitter; ratio:1.2" class="uk-icon-link uk-icon"></a>
-            <a href="https://www.facebook.com/" data-uk-icon="icon: facebook; ratio:1.2"
-               class="uk-margin-left uk-icon-link uk-icon"></a>
-          </div>
-
-          <div class="uk-margin-large-top uk-background-muted uk-padding-large">
-            <h3 class="uk-h2 uk-text-center uk-margin-medium-bottom">Get your weekly startup report</h3>
-            <form class="uk-grid-small" data-uk-grid>
-              <div class="uk-width-expand@m">
-                <input class="uk-input uk-form-large" type="email" placeholder="john@company.com">
-              </div>
-              <div class="uk-width-auto@m">
-                <button class="uk-button uk-button-large uk-button-primary uk-width-1-1">Subscribe</button>
-              </div>
-            </form>
-          </div>
-
-        </article>
-      </div>
-
     </section>
-
-    <div class="uk-container uk-container-small">
-      <hr class="uk-margin-remove">
-      <div class="uk-grid-large uk-child-width-expand@m uk-margin-large-top uk-margin-large-bottom" data-uk-grid>
-        <div>
-          <h4>Related Posts</h4>
-          <ul class="uk-list uk-list-large">
-            <li><a href="post.html">The most important startup questions</a></li>
-            <li><a href="post.html">A roadmap and how to win at each stage</a></li>
-            <li><a href="post.html">A roadmap and how to win at each stage</a></li>
-            <li><a href="post.html">Why startups should wait to calculate LTV</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Popular Posts</h4>
-          <ul class="uk-list uk-list-large">
-            <li><a href="post.html">A high growth SaaS metrics to drive success</a></li>
-            <li><a href="post.html">Top ten reasons for churn</a></li>
-            <li><a href="post.html">Buyer centric funnel design</a></li>
-            <li><a href="post.html">A high growth SaaS metrics to drive success</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <footer class="uk-section uk-section-muted">
-      <div class="uk-container">
-        <div class="uk-grid-large uk-child-width-expand@m" data-uk-grid>
-
-          <div>
-            <div class="uk-margin">
-              <a class="uk-logo" href="#">SOUTIEN</a>
-            </div>
-          </div>
-          <div>
-            <ul class="uk-list uk-list-large">
-              <li><h5>Company</h5></li>
-              <li><a class="uk-link-text" href="#">About Us</a></li>
-              <li><a class="uk-link-text" href="#">Our Mission</a></li>
-              <li><a class="uk-link-text" href="#">Contact Sales</a></li>
-            </ul>
-          </div>
-          <div>
-            <ul class="uk-list uk-list-large">
-              <li><h5>Services</h5></li>
-              <li><a class="uk-link-text" href="#">Products & Services</a></li>
-              <li><a class="uk-link-text" href="#">Customer Stories</a></li>
-              <li><a class="uk-link-text" href="#">Download Apps</a></li>
-            </ul>
-          </div>
-          <div>
-            <ul class="uk-list uk-list-large">
-              <li><h5>Information</h5></li>
-              <li><a class="uk-link-text" href="#">Privacy Policy</a></li>
-              <li><a class="uk-link-text" href="#">Terms & Conditions</a></li>
-              <li><a class="uk-link-text" href="#">Join Us</a></li>
-            </ul>
-          </div>
-
-        </div>
-
-        <div class="uk-grid-large uk-margin-large-top uk-flex uk-flex-middle" data-uk-grid>
-
-          <div class="uk-width-1-4@m"></div>
-          <div class="uk-width-expand@m">
-            <div class="uk-width-auto@m uk-margin-medium uk-text-small">
-              <p class="uk-display-inline-block uk-margin-medium-right uk-margin-remove-bottom">Created in 2019 by a <a
-                class="uk-link-text" href="https://ivanchromjak.com/" target="_blank"><u>drifter</u></a> in the city of
-                Cleveland</p>
-            </div>
-          </div>
-          <div class="uk-width-auto@m">
-            <div class="uk-width-auto@m uk-margin-medium uk-text-small">
-              <a href="https://twitter.com/" data-uk-icon="icon: twitter; ratio:0.8" class="uk-icon-link"></a>
-              <a href="https://www.instagram.com/" data-uk-icon="icon: instagram; ratio:0.8"
-                 class="uk-margin-left uk-icon-link"></a>
-              <a href="https://www.facebook.com/" data-uk-icon="icon: facebook; ratio:0.8"
-                 class="uk-margin-left uk-icon-link"></a>
-              <a href="https://www.youtube.com/" data-uk-icon="icon: youtube; ratio:0.8"
-                 class="uk-margin-left uk-icon-link"></a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </footer>
-
-    <div id="offcanvas" data-uk-offcanvas="flip: true; overlay: true">
-      <div class="uk-offcanvas-bar">
-
-        <button class="uk-offcanvas-close" type="button" data-uk-close></button>
-
-        <ul class="uk-nav uk-nav-primary uk-nav-offcanvas">
-          <li class="uk-nav-header uk-logo uk-margin-bottom">SOUTIEN</li>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="faq.html">Faq</a></li>
-          <li><a href="changelog.html">Changelog</a></li>
-          <li><a href="download.html">Download</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+  import Search from "../pub/search";
+  import Footer from "../pub/footer";
+  import Inav from "../pub/inav";
+
   export default {
     name: 'tags',
+    components: {Inav, Footer, Search},
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        title: '简单笔记',
+        recentList: [
+          {'id': '1001', 'title': '搭建博客之父子组件方法调用(四)'},
+          {'id': '1002', 'title': '搭建博客之vue环境配置(一)'}
+        ],
+        articleHtml: '<h2 id="h2-mdeditor-"><a name="MdEditor的功能列表演示" class="reference-link"></a><span class="header-link octicon octicon-link"></span>MdEditor的功能列表演示</h2><h1 id="h1--h1"><a name="标题H1" class="reference-link"></a><span class="header-link octicon octicon-link"></span>标题H1</h1><h2 id="h2--h2"><a name="标题H2" class="reference-link"></a><span class="header-link octicon octicon-link"></span>标题H2</h2><h3 id="h3--h3"><a name="标题H3" class="reference-link"></a><span class="header-link octicon octicon-link"></span>标题H3</h3><h4 id="h4--h4"><a name="标题H4" class="reference-link"></a><span class="header-link octicon octicon-link"></span>标题H4</h4><h5 id="h5--h5"><a name="标题H5" class="reference-link"></a><span class="header-link octicon octicon-link"></span>标题H5</h5><h6 id="h6--h5"><a name="标题H5" class="reference-link"></a><span class="header-link octicon octicon-link"></span>标题H5</h6><h3 id="h3-u5B57u7B26u6548u679Cu548Cu6A2Au7EBFu7B49"><a name="字符效果和横线等" class="reference-link"></a><span class="header-link octicon octicon-link"></span>字符效果和横线等</h3><hr> <p><del>删除线</del> <s>删除线（开启识别HTML标签时）</s></p> <p><em>斜体字</em> <em>斜体字</em></p> <p><strong>粗体</strong> <strong>粗体</strong></p> <p><strong><em>粗斜体</em></strong> <strong><em>粗斜体</em></strong></p> <p>上标：X<sub>2</sub>，下标：O<sup>2</sup></p> <p><strong>缩写(同HTML的abbr标签)</strong></p> <blockquote> <p>即更长的单词或短语的缩写形式，前提是开启识别HTML标签时，已默认开启</p> </blockquote> <p>The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.</p> <h3 id="h3--blockquotes"><a name="引用 Blockquotes" class="reference-link"></a><span class="header-link octicon octicon-link"></span>引用 Blockquotes</h3><blockquote> <p>引用文本 Blockquotes</p> </blockquote> <p>引用的行内混合 Blockquotes</p> <blockquote> <p>引用：如果想要插入空白换行<code>即&lt;br /&gt;标签</code>，在插入处先键入两个以上的空格然后回车即可，<a href="https://www.mdeditor.com/">普通链接</a>。</p> </blockquote> <h3 id="h3--links"><a name="锚点与链接 Links" class="reference-link"></a><span class="header-link octicon octicon-link"></span>锚点与链接 Links</h3><p><a href="https://www.mdeditor.com/">普通链接</a><br><a href="https://www.mdeditor.com/" title="普通链接带标题">普通链接带标题</a><br>直接链接：<a href="https://www.mdeditor.com">https://www.mdeditor.com</a><br><a href="https://www.mdeditor.com/">锚点链接</a></p> <p><a href="mailto:test.test@gmail.com">mailto:test.test@gmail.com</a><br>GFM a-tail link <a href="https://github.com/pandao" title="@pandao" class="at-link">@pandao</a><br>邮箱地址自动链接 <a href="mailto:test.test@gmail.com">test.test@gmail.com</a> <a href="mailto:www@vip.qq.com">www@vip.qq.com</a></p> <blockquote> <p><a href="https://github.com/pandao" title="@pandao" class="at-link">@pandao</a></p> </blockquote> <h3 id="h3--codes"><a name="多语言代码高亮 Codes" class="reference-link"></a><span class="header-link octicon octicon-link"></span>多语言代码高亮 Codes</h3><h4 id="h4--inline-code"><a name="行内代码 Inline code" class="reference-link"></a><span class="header-link octicon octicon-link"></span>行内代码 Inline code</h4><p>执行命令：<code>npm install marked</code></p> <h4 id="h4-u7F29u8FDBu98CEu683C"><a name="缩进风格" class="reference-link"></a><span class="header-link octicon octicon-link"></span>缩进风格</h4><p>即缩进四个空格，也做为实现类似 <code>&lt;pre&gt;</code> 预格式化文本 ( Preformatted Text ) 的功能。</p> <pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">&lt;?</span><span class="pln">php</span></code></li><li class="L1"><code><span class="pln"> echo </span><span class="str">"Hello world!"</span><span class="pun">;</span></code></li><li class="L2"><code><span class="pun">?&gt;</span></code></li></ol></pre><p>预格式化文本：</p> <pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">|</span><span class="pln"> </span><span class="typ">First</span><span class="pln"> </span><span class="typ">Header</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Second</span><span class="pln"> </span><span class="typ">Header</span><span class="pln"> </span><span class="pun">|</span></code></li><li class="L1"><code><span class="pun">|</span><span class="pln"> </span><span class="pun">-------------</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="pun">-------------</span><span class="pln"> </span><span class="pun">|</span></code></li><li class="L2"><code><span class="pun">|</span><span class="pln"> </span><span class="typ">Content</span><span class="pln"> </span><span class="typ">Cell</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Content</span><span class="pln"> </span><span class="typ">Cell</span><span class="pln"> </span><span class="pun">|</span></code></li><li class="L3"><code><span class="pun">|</span><span class="pln"> </span><span class="typ">Content</span><span class="pln"> </span><span class="typ">Cell</span><span class="pln"> </span><span class="pun">|</span><span class="pln"> </span><span class="typ">Content</span><span class="pln"> </span><span class="typ">Cell</span><span class="pln"> </span><span class="pun">|</span></code></li></ol></pre><h4 id="h4-js-"><a name="JS代码" class="reference-link"></a><span class="header-link octicon octicon-link"></span>JS代码</h4><pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-javascript"><span class="kwd">function</span><span class="pln"> test</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="lang-javascript"><span class="pln"> console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Hello world!"</span><span class="pun">);</span></code></li><li class="L2"><code class="lang-javascript"><span class="pun">}</span></code></li></ol></pre> <h4 id="h4-html-html-codes"><a name="HTML 代码 HTML codes" class="reference-link"></a><span class="header-link octicon octicon-link"></span>HTML 代码 HTML codes</h4><pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="lang-html"><span class="dec">&lt;!DOCTYPE html&gt;</span></code></li><li class="L1"><code class="lang-html"><span class="tag">&lt;html&gt;</span></code></li><li class="L2"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;head&gt;</span></code></li><li class="L3"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;mate</span><span class="pln"> </span><span class="atn">charest</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></li><li class="L4"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">name</span><span class="pun">=</span><span class="atv">"keywords"</span><span class="pln"> </span><span class="atn">content</span><span class="pun">=</span><span class="atv">"Editor.md, Markdown, Editor"</span><span class="pln"> </span><span class="tag">/&gt;</span></code></li><li class="L5"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;title&gt;</span><span class="pln">Hello world!</span><span class="tag">&lt;/title&gt;</span></code></li><li class="L6"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;style</span><span class="pln"> </span><span class="atn">type</span><span class="pun">=</span><span class="atv">"text/css"</span><span class="tag">&gt;</span></code></li><li class="L7"><code class="lang-html"><span class="pln"> body</span><span class="pun">{</span><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="lit">14px</span><span class="pun">;</span><span class="pln">color</span><span class="pun">:#</span><span class="lit">444</span><span class="pun">;</span><span class="pln">font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Microsoft Yahei"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Tahoma</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Hiragino Sans GB"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Arial</span><span class="pun">;</span><span class="pln">background</span><span class="pun">:#</span><span class="pln">fff</span><span class="pun">;}</span></code></li><li class="L8"><code class="lang-html"><span class="pln"> ul</span><span class="pun">{</span><span class="pln">list</span><span class="pun">-</span><span class="pln">style</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;}</span></code></li><li class="L9"><code class="lang-html"><span class="pln"> img</span><span class="pun">{</span><span class="pln">border</span><span class="pun">:</span><span class="pln">none</span><span class="pun">;</span><span class="pln">vertical</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln"> middle</span><span class="pun">;}</span></code></li><li class="L0"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;/style&gt;</span></code></li><li class="L1"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;/head&gt;</span></code></li><li class="L2"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;body&gt;</span></code></li><li class="L3"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;h1</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"text-xxl"</span><span class="tag">&gt;</span><span class="pln">Hello world!</span><span class="tag">&lt;/h1&gt;</span></code></li><li class="L4"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;p</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"text-green"</span><span class="tag">&gt;</span><span class="pln">Plain text</span><span class="tag">&lt;/p&gt;</span></code></li><li class="L5"><code class="lang-html"><span class="pln"> </span><span class="tag">&lt;/body&gt;</span></code></li><li class="L6"><code class="lang-html"><span class="tag">&lt;/html&gt;</span></code></li></ol></pre> <h3 id="h3--images"><a name="图片 Images" class="reference-link"></a><span class="header-link octicon octicon-link"></span>图片 Images</h3><p>图片加链接 (Image + Link)：</p> <p><a href="https://www.mdeditor.com/images/logos/markdown.png" title="markdown"><img src="https://www.mdeditor.com/images/logos/markdown.png" alt=""></a></p><a href="https://www.mdeditor.com/images/logos/markdown.png" title="markdown"> <blockquote> <p>Follow your heart.</p> </blockquote> <hr> </a><h3 id="h3--lists"><a href="https://www.mdeditor.com/images/logos/markdown.png" title="markdown"></a><a name="列表 Lists" class="reference-link"></a><span class="header-link octicon octicon-link"></span>列表 Lists</h3><h4 id="h4--unordered-lists-"><a name="无序列表（减号）Unordered Lists (-)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>无序列表（减号）Unordered Lists (-)</h4><ul> <li>列表一</li><li>列表二</li><li>列表三</li></ul> <h4 id="h4--unordered-lists-"><a name="无序列表（星号）Unordered Lists (*)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>无序列表（星号）Unordered Lists (*)</h4><ul> <li>列表一</li><li>列表二</li><li>列表三</li></ul> <h4 id="h4--unordered-lists-"><a name="无序列表（加号和嵌套）Unordered Lists (+)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>无序列表（加号和嵌套）Unordered Lists (+)</h4><ul> <li>列表一</li><li>列表二<ul> <li>列表二-1</li><li>列表二-2</li><li>列表二-3</li></ul> </li><li>列表三<ul> <li>列表一</li><li>列表二</li><li>列表三</li></ul> </li></ul> <h4 id="h4--ordered-lists-"><a name="有序列表 Ordered Lists (-)" class="reference-link"></a><span class="header-link octicon octicon-link"></span>有序列表 Ordered Lists (-)</h4><ol> <li>第一行</li><li>第二行</li><li>第三行</li></ol> <h3 id="h3--tables"><a name="绘制表格 Tables" class="reference-link"></a><span class="header-link octicon octicon-link"></span>绘制表格 Tables</h3><table> <thead> <tr> <th>项目</th> <th style="text-align:right">价格</th> <th style="text-align:center">数量</th> </tr> </thead> <tbody> <tr> <td>计算机</td> <td style="text-align:right">$1600</td> <td style="text-align:center">5</td> </tr> <tr> <td>手机</td> <td style="text-align:right">$12</td> <td style="text-align:center">12</td> </tr> <tr> <td>管线</td> <td style="text-align:right">$1</td> <td style="text-align:center">234</td> </tr> </tbody> </table> <table> <thead> <tr> <th>First Header</th> <th>Second Header</th> </tr> </thead> <tbody> <tr> <td>Content Cell</td> <td>Content Cell</td> </tr> <tr> <td>Content Cell</td> <td>Content Cell</td> </tr> </tbody> </table> <table> <thead> <tr> <th>First Header</th> <th>Second Header</th> </tr> </thead> <tbody> <tr> <td>Content Cell</td> <td>Content Cell</td> </tr> <tr> <td>Content Cell</td> <td>Content Cell</td> </tr> </tbody> </table> <table> <thead> <tr> <th>Function name</th> <th>Description</th> </tr> </thead> <tbody> <tr> <td><code>help()</code></td> <td>Display the help window.</td> </tr> <tr> <td><code>destroy()</code></td> <td><strong>Destroy your computer!</strong></td> </tr> </tbody> </table> <table> <thead> <tr> <th style="text-align:left">Left-Aligned</th> <th style="text-align:center">Center Aligned</th> <th style="text-align:right">Right Aligned</th> </tr> </thead> <tbody> <tr> <td style="text-align:left">col 3 is</td> <td style="text-align:center">some wordy text</td> <td style="text-align:right">$1600</td> </tr> <tr> <td style="text-align:left">col 2 is</td> <td style="text-align:center">centered</td> <td style="text-align:right">$12</td> </tr> <tr> <td style="text-align:left">zebra stripes</td> <td style="text-align:center">are neat</td> <td style="text-align:right">$1</td> </tr> </tbody> </table> <table> <thead> <tr> <th>Item</th> <th style="text-align:right">Value</th> </tr> </thead> <tbody> <tr> <td>Computer</td> <td style="text-align:right">$1600</td> </tr> <tr> <td>Phone</td> <td style="text-align:right">$12</td> </tr> <tr> <td>Pipe</td> <td style="text-align:right">$1</td> </tr> </tbody> </table> <hr>'
       }
     }
   }

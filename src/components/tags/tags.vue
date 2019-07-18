@@ -22,7 +22,7 @@
           class="uk-grid-collapse uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-grid-match uk-text-center"
           data-uk-grid data-uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 80">
           <div v-for="item in tags">
-            <a href="javascript: void(0)" @click="goInfo(item.id)"
+            <a href="javascript: void(0)" @click="goList(item.id)"
                class="uk-card card-box uk-card-body uk-border-rounded">
               <img :src="item.icon">
               <p class="uk-margin-medium-top">{{item.name}}</p>
@@ -87,8 +87,9 @@
       }
     },
     methods: {
-      goInfo(id) {
+      goList(id) {
         console.log('tags id:' + id);
+        this.$router.push({name: 'taglist', params: {currentPage: 1, tags: id}});
       }
     }
   }

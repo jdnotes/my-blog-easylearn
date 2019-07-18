@@ -149,6 +149,10 @@
       },
       goInfo(id) {
         console.log('home goInfo method:' + id);
+        if (id == null) {
+          return;
+        }
+        this.$router.push({path: '/info/' + id});
       },
       search(curPage, tags, keyword) {
         this.pageChange(curPage, tags, keyword);
