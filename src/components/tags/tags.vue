@@ -66,23 +66,23 @@
     data() {
       return {
         tags: [
-          {'id': '1001', 'name': 'JAVA', 'icon': 'static/images/java.png'},
-          {'id': '1001', 'name': 'Spring', 'icon': 'static/images/spring.png'},
-          {'id': '1001', 'name': 'Mybatis', 'icon': 'static/images/mybatis.png'},
-          {'id': '1001', 'name': 'MYSQL', 'icon': 'static/images/mysql.png'},
-          {'id': '1001', 'name': 'Redis', 'icon': 'static/images/redis.png'},
-          {'id': '1001', 'name': 'RabbitMQ', 'icon': 'static/images/rabbitmq.png'},
-          {'id': '1001', 'name': 'JVM', 'icon': 'static/images/jvm.png'},
-          {'id': '1001', 'name': 'ES', 'icon': 'static/images/elasticsearch.png'},
-          {'id': '1001', 'name': 'Nginx', 'icon': 'static/images/nginx.png'},
-          {'id': '1001', 'name': 'Docker', 'icon': 'static/images/docker.png'},
-          {'id': '1001', 'name': 'Dubbo', 'icon': 'static/images/dubbo.png'},
-          {'id': '1001', 'name': 'Zookeeper', 'icon': 'static/images/zookeeper.png'},
-          {'id': '1001', 'name': 'git', 'icon': 'static/images/git.png'},
-          {'id': '1001', 'name': '多线程', 'icon': 'static/images/multi_thread.png'},
-          {'id': '1001', 'name': '实战', 'icon': 'static/images/actual_combat.png'},
-          {'id': '1001', 'name': 'IDEA', 'icon': 'static/images/idea.png'},
-          {'id': '1001', 'name': '推荐', 'icon': 'static/images/recommend.png'}
+          {'id': '1001', 'name': 'JAVA', 'icon': 'static/images/tags/java.png'},
+          {'id': '1001', 'name': 'Spring', 'icon': 'static/images/tags/spring.png'},
+          {'id': '1001', 'name': 'Mybatis', 'icon': 'static/images/tags/mybatis.png'},
+          {'id': '1001', 'name': 'MYSQL', 'icon': 'static/images/tags/mysql.png'},
+          {'id': '1001', 'name': 'Redis', 'icon': 'static/images/tags/redis.png'},
+          {'id': '1001', 'name': 'RabbitMQ', 'icon': 'static/images/tags/rabbitmq.png'},
+          {'id': '1001', 'name': 'JVM', 'icon': 'static/images/tags/jvm.png'},
+          {'id': '1001', 'name': 'ES', 'icon': 'static/images/tags/elasticsearch.png'},
+          {'id': '1001', 'name': 'Nginx', 'icon': 'static/images/tags/nginx.png'},
+          {'id': '1001', 'name': 'Docker', 'icon': 'static/images/tags/docker.png'},
+          {'id': '1001', 'name': 'Dubbo', 'icon': 'static/images/tags/dubbo.png'},
+          {'id': '1001', 'name': 'Zookeeper', 'icon': 'static/images/tags/zookeeper.png'},
+          {'id': '1001', 'name': 'git', 'icon': 'static/images/tags/git.png'},
+          {'id': '1001', 'name': '多线程', 'icon': 'static/images/tags/multi_thread.png'},
+          {'id': '1001', 'name': '实战', 'icon': 'static/images/tags/actual_combat.png'},
+          {'id': '1001', 'name': 'IDEA', 'icon': 'static/images/tags/idea.png'},
+          {'id': '1001', 'name': '推荐', 'icon': 'static/images/tags/recommend.png'}
         ]
       }
     },

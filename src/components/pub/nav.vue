@@ -37,6 +37,9 @@
             <router-link :to="{path:'/tags'}">标签云</router-link>
           </li>
           <li>
+            <router-link :to="{path:'/home'}">传送门</router-link>
+          </li>
+          <li>
             <router-link :to="{path:'/contact'}">留言</router-link>
           </li>
           <li>

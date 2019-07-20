@@ -10,19 +10,19 @@
           <div class="uk-width-2-3@m">
             <div class="uk-card uk-card-default">
               <div class="uk-card-media-top uk-inline">
-                <img src="static/images/image2.jpg" alt="Lorem ipsum">
+                <img :src="recent.logo" alt="Lorem ipsum">
                 <a class="uk-overlay uk-position-cover" href="javascript: void(0)"
-                   @click="goInfo(recent.recentId)"></a>
+                   @click="goInfo(recent.id)"></a>
               </div>
               <div class="uk-card-body">
                 <h3 class="uk-card-title">
-                  <a href="javascript: void(0)" @click="goInfo(recent.recentId)">{{recent.recentArticle}}</a>
+                  <a href="javascript: void(0)" @click="goInfo(recent.id)">{{recent.title}}</a>
                 </h3>
               </div>
               <div class="uk-card-footer">
                 <a class="uk-text-small text-400" href="javascript: void(0)"
-                   @click="goInfo(recent.recentId)">Read more</a>
-                <span class="uk-text-small uk-text-muted uk-align-right">{{recent.recentDate}}</span>
+                   @click="goInfo(recent.id)">Read more</a>
+                <span class="uk-text-small uk-text-muted uk-align-right">{{recent.dateText}}</span>
               </div>
             </div>
           </div>
@@ -68,9 +68,9 @@
               </div>
               <div class="uk-card-footer">
                 <a class="uk-text-small text-400" href="javascript: void(0)" @click="goInfo(item.id)">
-                  Read more ({{item.readNum}})
+                  Read more
                 </a>
-                <span class="uk-text-small uk-text-muted uk-align-right">{{item.articleDate}}</span>
+                <span class="uk-text-small uk-text-muted uk-align-right">{{item.dateText}}</span>
               </div>
             </div>
           </div>
@@ -100,11 +100,12 @@
     },
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App',
+        msg: 'home page',
         recent: {
-          recentId: '1001',
-          recentArticle: '你有多自律，就有多美好!',
-          recentDate: '7 days ago'
+          id: '1001',
+          title: '你有多自律，就有多美好!',
+          logo: 'static/images/top/1.jpg',
+          dateText: '7 days ago'
         },
         hotList: [
           {'id': '1001', 'title': '搭建我的博客之History模式(十)'},
@@ -126,26 +127,25 @@
           {
             'id': '1001',
             'title': '搭建我的博客之父子组件方法调用(1)',
-            'logo': 'static/images/image3.jpg',
-            'readNum': '45',
-            'articleDate': '1 days ago'
+            'logo': 'static/images/list/2.jpg',
+            'dateText': '1 days ago'
           },
           {
             'id': '1002',
             'title': '搭建我的博客之父子组件方法调用(2)',
-            'logo': 'static/images/image3.jpg',
-            'readNum': '45',
-            'articleDate': '3 days ago'
+            'logo': 'static/images/list/1.jpg',
+            'dateText': '3 days ago'
           },
         ],
       }
     },
     mounted() {
-      this.getInitList()
+      this.getInitList();
     },
     methods: {
       getInitList() {
         console.log('home init method');
+        this.recent.logo = this.getLogoUrl(1, 13, "static/images/top/");
       },
       goInfo(id) {
         console.log('home goInfo method:' + id);
@@ -159,6 +159,17 @@
       },
       pageChange(curPage, tags, keyword) {
         console.log('home search', curPage, tags, keyword);
+      },
+      getRandomNum(lower, upper) {
+        //产生随机整数，包含下限值，但不包括上限值
+        //Math.floor(Math.random() * (upper - lower)) + lower;
+        //产生随机整数，包含下限值，包括上限值
+        return Math.floor(Math.random() * (upper - lower + 1)) + lower;
+      },
+      getLogoUrl(lower, upper, path) {
+        let rand = this.getRandomNum(lower, upper);
+        let logo = path + rand + ".jpg";
+        return logo;
       }
     }
   }
