@@ -42,7 +42,8 @@
               <div class="uk-width-4-5">
                 <h4 class="margin-xsmall-bottom">待续 ...</h4>
                 <p class="uk-margin-remove uk-link-reset">
-                  <a class="button-link" href="contact.html">联系me</a></p>
+                  <router-link :to="{path:'/contact'}">给我留言</router-link>
+                </p>
               </div>
             </div>
           </div>

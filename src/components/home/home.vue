@@ -145,7 +145,12 @@
     methods: {
       getInitList() {
         console.log('home init method');
+
         this.recent.logo = this.getLogoUrl(1, 13, "static/images/top/");
+
+        this.articleList.forEach(el => {
+          el.logo = this.getLogoUrl(1, 50, "static/images/list/");
+        })
       },
       goInfo(id) {
         console.log('home goInfo method:' + id);

@@ -28,7 +28,7 @@
               <div class="uk-width-1-2">
                 <label class="uk-form-label" for="form-phone">手机号</label>
                 <div class="uk-form-controls">
-                  <input class="uk-input uk-form-large" id="form-phone" type="email" placeholder="手机号">
+                  <input class="uk-input uk-form-large" id="form-phone" type="text" placeholder="手机号">
                 </div>
               </div>
               <div class="uk-width-1-1">
