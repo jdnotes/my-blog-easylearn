@@ -5,13 +5,16 @@ export default {
     logout: '/blog/user/loginOut' // // 退出
   },
   article: {
-    search: '/blog/article/search',
-    details: '/blog/article/details',
-    recommends: '/blog/article/recommends'
+    recent: '/blog/article/getRecent',
+    recentList: '/blog/article/getRecentList', //最新列表
+    qualityList: '/blog/article/getQualityList', //优质列表
+    hotList: '/blog/article/getHotList', //热门列表
+    search: '/blog/article/search', //分页列表
+    details: '/blog/article/details' //详情
   },
   articleBack: {
     save: '/blog/articleBack/save',
-    get:'/blog/articleBack/getByCode'
+    get: '/blog/articleBack/getByCode'
   },
   tag: {
     cloud: '/blog/tag/cloud',

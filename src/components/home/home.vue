@@ -33,7 +33,7 @@
                   <a href="#">热门推荐</a>
                 </li>
                 <li>
-                  <a href="#">最新推荐</a>
+                  <a href="#">优质推荐</a>
                 </li>
               </ul>
               <ul class="uk-switcher article-content">
@@ -45,7 +45,7 @@
                 </li>
                 <li>
                   <ul class="uk-list uk-list-large">
-                    <li v-for="item in recentList">
+                    <li v-for="item in qualityList">
                       <a href="javascript: void(0)" @click="goInfo(item.id)">{{item.title}}</a></li>
                   </ul>
                 </li>
@@ -105,13 +105,13 @@
           id: '1001',
           title: '你有多自律，就有多美好!',
           logo: 'static/images/top/1.jpg',
-          dateText: '7 days ago'
+          date: '1563705967000'
         },
         hotList: [
           {'id': '1001', 'title': '搭建我的博客之History模式(十)'},
           {'id': '1002', 'title': '搭建我的博客之History模式(九)'}
         ],
-        recentList: [
+        qualityList: [
           {'id': '1001', 'title': '搭建我的博客之父子组件方法调用(四)'},
           {'id': '1002', 'title': '搭建我的博客之vue环境配置(一)'}
         ],
@@ -128,13 +128,13 @@
             'id': '1001',
             'title': '搭建我的博客之父子组件方法调用(1)',
             'logo': 'static/images/list/2.jpg',
-            'dateText': '1 days ago'
+            'date': '1563705967000'
           },
           {
             'id': '1002',
             'title': '搭建我的博客之父子组件方法调用(2)',
             'logo': 'static/images/list/1.jpg',
-            'dateText': '3 days ago'
+            'date': '1563696726000'
           },
         ],
       }
@@ -144,26 +144,78 @@
     },
     methods: {
       getInitList() {
-        console.log('home init method');
-
-        this.recent.logo = this.getLogoUrl(1, 13, "static/images/top/");
-
-        this.articleList.forEach(el => {
-          el.logo = this.getLogoUrl(1, 50, "static/images/list/");
+        this.loadRecentData();
+        this.loadHotList();
+        this.loadQualityList();
+        this.loadArticleList();
+      },
+      loadArticleList() {
+        let tags = '';
+        let keywords = '';
+        this.pageChange(1, tags, keywords);
+      },
+      loadQualityList() {
+        this.http.post(this.ports.article.qualityList, {}, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.recentList = datas;
+          }
+        })
+      },
+      loadHotList() {
+        this.http.post(this.ports.article.hotList, {}, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.hotList = datas;
+          }
+        })
+      },
+      loadRecentData() {
+        this.http.post(this.ports.article.recent, {}, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.recent = datas;
+            this.recent.logo = this.getLogoUrl(1, 13, "static/images/top/");
+            this.recent.dateText = this.getDateStr(this.recent.date);
+          }
         })
       },
       goInfo(id) {
-        console.log('home goInfo method:' + id);
         if (id == null) {
           return;
         }
         this.$router.push({path: '/info/' + id});
       },
       search(curPage, tags, keyword) {
-        this.pageChange(curPage, tags, keyword);
+        //跳转taglist页面
+        //this.pageChange(curPage, tags, keyword);
       },
       pageChange(curPage, tags, keyword) {
-        console.log('home search', curPage, tags, keyword);
+        this.http.post(this.ports.article.search, {
+          currentPage: curPage,
+          tags: tags,
+          keywords: keyword
+        }, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.articleList = datas.records;
+            this.currentPage = datas.currentPage;
+            this.total = datas.totalRecords;
+
+            this.articleList.forEach(el => {
+              el.dateText = this.getDateStr(el.date);
+              el.logo = this.getLogoUrl(1, 50, "static/images/list/");
+            });
+
+            if (this.total > 5) {
+              this.pageShow = true;
+            } else {
+              this.pageShow = false;
+            }
+          } else {
+            this.articleList = [];
+          }
+        })
       },
       getRandomNum(lower, upper) {
         //产生随机整数，包含下限值，但不包括上限值
@@ -175,6 +227,24 @@
         let rand = this.getRandomNum(lower, upper);
         let logo = path + rand + ".jpg";
         return logo;
+      },
+      getDateStr(times) {
+        //当前时间
+        let timestamp = Date.parse(new Date());
+        timestamp = timestamp / 1000;
+        //过期时间
+        times = parseInt(times / 1000);
+        let diff = (timestamp - times) / 60;
+        if (diff > 0 && diff < 60) {
+          return parseInt(diff) + "分钟前";
+        } else if (diff >= 60 && diff <= 1440) {
+          return parseInt(diff / 60) + "小时前";
+        } else if (diff > 1440 && diff < 4320) {
+          return parseInt(diff / 60 / 24) + "天前";
+        } else if (diff > 4320) {
+          return "3天前";
+        }
+        return "1天前";
       }
     }
   }

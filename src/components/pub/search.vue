@@ -36,7 +36,6 @@
           return;
         } else {
           //子组件调用父组件方法
-          console.log('search vue :' + keyword);
           this.$parent.search(1, '', keyword);
         }
       }
