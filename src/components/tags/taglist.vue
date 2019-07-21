@@ -13,10 +13,11 @@
                 <a href="#">{{article.title}}</a>
               </h2>
               <div class="article-content">
-                <p v-html="article.selection"></p>
+                <p v-html="article.articleSection"></p>
               </div>
               <div>
-                <a class="button-link uk-text-small" href="#">Read more</a>
+                <a class="button-link uk-text-small" href="javascript: void(0)"
+                   @click="goInfo(article.id)">Read more</a>
               </div>
             </article>
           </div>
@@ -72,13 +73,71 @@
           {
             'id': '1001',
             'title': '',
-            'selection': '<h2 id="h2"><a name="为什么要分库分表？" class="reference-link"></a><span class="header-link octicon octicon-link"></span>为什么要分库分表？</h2><p>分表<br>比如你单表都几千万数据了，你确定你能扛住么？绝对不行，单表数据量太大，会极大影响你的 sql 执行的性能...'
+            'articleSection': '<h2 id="h2"><a name="为什么要分库分表？" class="reference-link"></a><span class="header-link octicon octicon-link"></span>为什么要分库分表？</h2><p>分表<br>比如你单表都几千万数据了，你确定你能扛住么？绝对不行，单表数据量太大，会极大影响你的 sql 执行的性能...'
           }
         ],
         recentList: [
           {'id': '1001', 'title': '搭建博客之父子组件方法调用(四)'},
           {'id': '1002', 'title': '搭建博客之vue环境配置(一)'}
         ]
+      }
+    },
+    mounted() {
+      this.getInitList()
+    },
+    methods: {
+      getInitList() {
+        this.loadArticleList();
+        this.loadRecentList();
+      },
+      loadRecentList() {
+        this.http.post(this.ports.article.recentList, {}, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.recentList = datas;
+          }
+        })
+      },
+      loadArticleList() {
+        let param = this.$route.query;
+        let tags = param.tags;
+        if (tags) {
+          this.pageChange(1, tags, '');
+        } else {
+          this.pageChange(1, '', '');
+        }
+      },
+      goInfo(id) {
+        if (id == null) {
+          return;
+        }
+        this.$router.push({path: '/info/' + id});
+      },
+      pageChange(curPage, tags, keyword) {
+        this.http.post(this.ports.article.search, {
+          currentPage: curPage,
+          tags: tags,
+          keywords: keyword
+        }, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.articleList = datas.records;
+            this.currentPage = datas.currentPage;
+            this.total = datas.totalRecords;
+            if (this.total > 10) {
+              this.pageShow = true;
+            } else if (this.total > 0) {
+              this.pageShow = false;
+            } else {
+              this.pageShow = false;
+            }
+          } else {
+            this.articleList = [];
+          }
+        })
+      },
+      search(curPage, tags, keyword) {
+        this.pageChange(curPage, tags, keyword);
       }
     }
   }

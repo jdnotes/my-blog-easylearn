@@ -188,7 +188,7 @@
       },
       search(curPage, tags, keyword) {
         //跳转taglist页面
-        //this.pageChange(curPage, tags, keyword);
+        this.$router.push({path: '/taglist', query: {tags: tags}});
       },
       pageChange(curPage, tags, keyword) {
         this.http.post(this.ports.article.search, {

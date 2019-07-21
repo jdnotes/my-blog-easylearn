@@ -22,10 +22,10 @@
           class="uk-grid-collapse uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l uk-grid-match uk-text-center"
           data-uk-grid data-uk-scrollspy="cls: uk-animation-slide-bottom-medium; delay: 80">
           <div v-for="item in tags">
-            <a href="javascript: void(0)" @click="goList(item.id)"
+            <a href="javascript: void(0)" @click="goList(item.code)"
                class="uk-card card-box uk-card-body uk-border-rounded">
               <img :src="item.icon">
-              <p class="uk-margin-medium-top">{{item.name}}</p>
+              <p class="uk-margin-medium-top">{{item.tagName}}</p>
             </a>
           </div>
         </div>
@@ -66,31 +66,29 @@
     },
     data() {
       return {
-        tags: [
-          {'id': '1001', 'name': 'JAVA', 'icon': 'static/images/tags/java.png'},
-          {'id': '1001', 'name': 'Spring', 'icon': 'static/images/tags/spring.png'},
-          {'id': '1001', 'name': 'Mybatis', 'icon': 'static/images/tags/mybatis.png'},
-          {'id': '1001', 'name': 'MYSQL', 'icon': 'static/images/tags/mysql.png'},
-          {'id': '1001', 'name': 'Redis', 'icon': 'static/images/tags/redis.png'},
-          {'id': '1001', 'name': 'RabbitMQ', 'icon': 'static/images/tags/rabbitmq.png'},
-          {'id': '1001', 'name': 'JVM', 'icon': 'static/images/tags/jvm.png'},
-          {'id': '1001', 'name': 'ES', 'icon': 'static/images/tags/elasticsearch.png'},
-          {'id': '1001', 'name': 'Nginx', 'icon': 'static/images/tags/nginx.png'},
-          {'id': '1001', 'name': 'Docker', 'icon': 'static/images/tags/docker.png'},
-          {'id': '1001', 'name': 'Dubbo', 'icon': 'static/images/tags/dubbo.png'},
-          {'id': '1001', 'name': 'Zookeeper', 'icon': 'static/images/tags/zookeeper.png'},
-          {'id': '1001', 'name': 'git', 'icon': 'static/images/tags/git.png'},
-          {'id': '1001', 'name': '多线程', 'icon': 'static/images/tags/multi_thread.png'},
-          {'id': '1001', 'name': '实战', 'icon': 'static/images/tags/actual_combat.png'},
-          {'id': '1001', 'name': 'IDEA', 'icon': 'static/images/tags/idea.png'},
-          {'id': '1001', 'name': '推荐', 'icon': 'static/images/tags/recommend.png'}
-        ]
+        tags: []
       }
     },
+    mounted() {
+      this.getInitTags()
+    },
     methods: {
+      getInitTags() {
+        this.http.post(this.ports.tag.cloud, {}, res => {
+          if (res.success) {
+            let datas = res.data.results;
+            this.tags = datas;
+            this.tags.forEach(el => {
+              //todo
+              el.icon = "static/images/tags/java.png";
+            });
+          } else {
+            this.tags = [];
+          }
+        })
+      },
       goList(id) {
-        console.log('tags id:' + id);
-        this.$router.push({name: 'taglist', params: {currentPage: 1, tags: id}});
+        this.$router.push({path: '/taglist', query: {tags: id}});
       }
     }
   }
