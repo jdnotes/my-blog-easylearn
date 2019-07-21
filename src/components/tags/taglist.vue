@@ -71,11 +71,8 @@
         articleList: [
           {
             'id': '1001',
-            'title': 'How do I enable payment gateway?',
-            'selection': '这么多年来，我面试了很多人。我越发感到「技术基础」非常重要。' +
-              '很多技术的本质是一样的。<b>技术基础足够好的话，学东西可以非常快。</b>往下到操作系统层面，甚至计算机硬件层面，' +
-              '你会发现，编程语言特性和虚拟机特性不再重要。而技术基础和具体的编程语言没有太大关系，你有良好的技术基础，' +
-              '面试什么样的技术人员都是无障碍的。'
+            'title': '',
+            'selection': '<h2 id="h2"><a name="为什么要分库分表？" class="reference-link"></a><span class="header-link octicon octicon-link"></span>为什么要分库分表？</h2><p>分表<br>比如你单表都几千万数据了，你确定你能扛住么？绝对不行，单表数据量太大，会极大影响你的 sql 执行的性能...'
           }
         ],
         recentList: [

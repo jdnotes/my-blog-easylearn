@@ -35,7 +35,7 @@
       </div>
     </nav>
     <section>
-      <mavon-editor ref="editor" v-model="mdText" :toolbars="toolbars" @save="save"/>
+      <mavon-editor ref="editor" v-model="mdText" :toolbars="toolbars" @save="save" @change="change"/>
     </section>
   </div>
 </template>
@@ -147,13 +147,16 @@
           }
         })
       },
+      change(value, render) {
+
+      },
       getUrlKey: function (name) {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href)
           || [, ""])[1].replace(/\+/g, '%20')) || null;
       },
       setFullScreen() {
         //markdown全部值
-        console.log(this.$refs.editor);
+        //console.log(this.$refs.editor);
         //let markdown = this.$refs.editor.d_value;
         //console.log(markdown);
         //设置全屏
