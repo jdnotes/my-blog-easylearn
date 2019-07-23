@@ -25,7 +25,21 @@
         </span>
         </div>
         <div>
-          <strong>word:</strong><input v-model="word" placeholder="请输入口令">
+          <strong>热门类型:</strong><span v-for="at in hotArr">
+          <input type="radio" :value="at.id" v-model="hot">
+          <label>{{at.name}}</label>
+        </span>
+        </div>
+        <div>
+          <strong>优质类型:</strong><span v-for="at in qualityArr">
+          <input type="radio" :value="at.id" v-model="quality">
+          <label>{{at.name}}</label>
+        </span>
+        </div>
+        <div>
+          <strong>name:</strong><input v-model="username" placeholder="请输入口令">
+          <br>
+          <strong>pwd:</strong><input v-model="password" placeholder="请输入口令">
         </div>
       </div>
       <div>
@@ -47,10 +61,13 @@
     data() {
       return {
         title: "",
-        word: "",
+        username: "",
+        password: "",
         secondTitle: "",
         logo: "",
         level: "",
+        quality: "",
+        hot: "",
         mdText: "# 简单笔记",
         tags: [],
         tagValue: '',
@@ -60,6 +77,14 @@
           {id: 3, name: '三级'},
           {id: 4, name: '四级'},
           {id: 5, name: '五级'}
+        ],
+        hotArr: [
+          {id: 1, name: '热门'},
+          {id: 2, name: '非热门'}
+        ],
+        qualityArr: [
+          {id: 1, name: '优质'},
+          {id: 2, name: '基础'}
         ],
         toolbars: {
           bold: true, // 粗体
@@ -133,11 +158,14 @@
           title: this.title,
           secondTitle: this.secondTitle,
           logo: this.logo,
-          tag: this.tagValue,
+          tags: this.tagValue,
           level: this.level,
           articleMarkdown: value,
           articleHtml: render,
-          word: this.word
+          quality: this.quality,
+          hot: this.hot,
+          username: this.username,
+          password: this.password
         }, res => {
           if (res.success) {
             //let datas = res.data.results;

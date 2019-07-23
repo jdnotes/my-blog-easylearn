@@ -79,8 +79,7 @@
             let datas = res.data.results;
             this.tags = datas;
             this.tags.forEach(el => {
-              //todo
-              el.icon = "static/images/tags/java.png";
+              el.icon = "static/images/tags/" + el.icon + ".png";
             });
           } else {
             this.tags = [];

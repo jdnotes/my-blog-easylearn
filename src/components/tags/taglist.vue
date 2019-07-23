@@ -10,7 +10,7 @@
           <div class="uk-width-expand@m padding-right@m padding-large-right@l">
             <article class="uk-article" v-for="article in articleList">
               <h2 class="uk-h3 uk-margin-bottom">
-                <a href="#">{{article.title}}</a>
+                <!--<a href="#">{{article.title}}</a>-->
               </h2>
               <div class="article-content">
                 <p v-html="article.articleSection"></p>
@@ -69,17 +69,8 @@
           noDataText: '暂无内容,看看最新推荐吧',
           pageShow: false,
         },
-        articleList: [
-          {
-            'id': '1001',
-            'title': '',
-            'articleSection': '<h2 id="h2"><a name="为什么要分库分表？" class="reference-link"></a><span class="header-link octicon octicon-link"></span>为什么要分库分表？</h2><p>分表<br>比如你单表都几千万数据了，你确定你能扛住么？绝对不行，单表数据量太大，会极大影响你的 sql 执行的性能...'
-          }
-        ],
-        recentList: [
-          {'id': '1001', 'title': '搭建博客之父子组件方法调用(四)'},
-          {'id': '1002', 'title': '搭建博客之vue环境配置(一)'}
-        ]
+        articleList: [],
+        recentList: []
       }
     },
     mounted() {
@@ -99,13 +90,11 @@
         })
       },
       loadArticleList() {
-        let param = this.$route.query;
+        let param = this.$route.params;
         let tags = param.tags;
-        if (tags) {
-          this.pageChange(1, tags, '');
-        } else {
-          this.pageChange(1, '', '');
-        }
+        let keyword = param.keyword;
+        console.log(tags,keyword);
+        this.pageChange(1, tags, keyword);
       },
       goInfo(id) {
         if (id == null) {
@@ -125,11 +114,11 @@
             this.currentPage = datas.currentPage;
             this.total = datas.totalRecords;
             if (this.total > 10) {
-              this.pageShow = true;
+              this.page.pageShow = true;
             } else if (this.total > 0) {
-              this.pageShow = false;
+              this.page.pageShow = false;
             } else {
-              this.pageShow = false;
+              this.page.pageShow = false;
             }
           } else {
             this.articleList = [];

@@ -5,7 +5,7 @@ export default {
     logout: '/blog/user/loginOut' // // 退出
   },
   article: {
-    recent: '/blog/article/getRecent',
+    quality: '/blog/article/getQuality',
     recentList: '/blog/article/getRecentList', //最新列表
     qualityList: '/blog/article/getQualityList', //优质列表
     hotList: '/blog/article/getHotList', //热门列表

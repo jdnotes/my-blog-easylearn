@@ -3,12 +3,6 @@ import axios from 'axios'
 // 默认请求超时时间
 const TIME_OUT_MS = 60 * 1000
 
-/*const REQUEST_URL = process.env.NODE_ENV === 'development'
-  // 测试接口地址
-  ? 'http://192.168.1.200'
-  // 线上接口地址
-  : 'http://www.jdbiji.com';*/
-
 const REQUEST_URL = 'http://www.jdbiji.com';
 
 /*

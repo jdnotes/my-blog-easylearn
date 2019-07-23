@@ -101,20 +101,9 @@
     data() {
       return {
         msg: 'home page',
-        recent: {
-          id: '1001',
-          title: '你有多自律，就有多美好!',
-          logo: 'static/images/top/1.jpg',
-          date: '1563705967000'
-        },
-        hotList: [
-          {'id': '1001', 'title': '搭建我的博客之History模式(十)'},
-          {'id': '1002', 'title': '搭建我的博客之History模式(九)'}
-        ],
-        qualityList: [
-          {'id': '1001', 'title': '搭建我的博客之父子组件方法调用(四)'},
-          {'id': '1002', 'title': '搭建我的博客之vue环境配置(一)'}
-        ],
+        recent: {},
+        hotList: [],
+        qualityList: [],
         page: {
           currentPage: 1,
           pageRows: 10,
@@ -123,20 +112,7 @@
           noDataText: '暂无内容,看看最新推荐吧',
           pageShow: false,
         },
-        articleList: [
-          {
-            'id': '1001',
-            'title': '搭建我的博客之父子组件方法调用(1)',
-            'logo': 'static/images/list/2.jpg',
-            'date': '1563705967000'
-          },
-          {
-            'id': '1002',
-            'title': '搭建我的博客之父子组件方法调用(2)',
-            'logo': 'static/images/list/1.jpg',
-            'date': '1563696726000'
-          },
-        ],
+        articleList: [],
       }
     },
     mounted() {
@@ -158,7 +134,7 @@
         this.http.post(this.ports.article.qualityList, {}, res => {
           if (res.success) {
             let datas = res.data.results;
-            this.recentList = datas;
+            this.qualityList = datas;
           }
         })
       },
@@ -171,7 +147,7 @@
         })
       },
       loadRecentData() {
-        this.http.post(this.ports.article.recent, {}, res => {
+        this.http.post(this.ports.article.quality, {}, res => {
           if (res.success) {
             let datas = res.data.results;
             this.recent = datas;
@@ -188,7 +164,7 @@
       },
       search(curPage, tags, keyword) {
         //跳转taglist页面
-        this.$router.push({path: '/taglist', query: {tags: tags}});
+        this.$router.push({name: 'taglist', params: {tags: tags, keyword: keyword}});
       },
       pageChange(curPage, tags, keyword) {
         this.http.post(this.ports.article.search, {
