@@ -102,4 +102,9 @@
 <style scoped>
   @import "../../assets/css/font.css";
   @import "../../assets/css/main.css";
+
+  .uk-active {
+    color: #4DC29E;
+    font-weight: 600;
+  }
 </style>

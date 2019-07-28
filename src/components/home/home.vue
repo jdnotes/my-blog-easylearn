@@ -75,8 +75,8 @@
             </div>
           </div>
         </div>
-        <Pager :totalRecords="total" :currentPage='page.currentPage' @pageChange="page.pageChange"
-               v-if="page.pageShow"></Pager>
+        <Pager :totalRecords="page.total" :currentPage='page.currentPage' :pageRow='page.pageRow'
+               @pageChange="pageChange" v-if="page.pageShow"></Pager>
       </div>
     </section>
     <Footer></Footer>
@@ -106,7 +106,7 @@
         qualityList: [],
         page: {
           currentPage: 1,
-          pageRows: 10,
+          pageRow: 6,
           total: 0,
           noDataShow: false,
           noDataText: '暂无内容,看看最新推荐吧',
@@ -164,11 +164,13 @@
       },
       search(curPage, tags, keyword) {
         //跳转taglist页面
-        this.$router.push({name: 'taglist', params: {tags: tags, keyword: keyword}});
+        //this.$router.push({name: 'taglist', params: {tags: tags, keyword: keyword}});
+        this.$router.push({path: '/taglist', query: {tags: tags, keyword: keyword}});
       },
       pageChange(curPage, tags, keyword) {
         this.http.post(this.ports.article.search, {
           currentPage: curPage,
+          pageRow: this.page.pageRow,
           tags: tags,
           keywords: keyword
         }, res => {
@@ -176,17 +178,17 @@
             let datas = res.data.results;
             this.articleList = datas.records;
             this.currentPage = datas.currentPage;
-            this.total = datas.totalRecords;
+            this.page.total = datas.totalRecords;
 
             this.articleList.forEach(el => {
-              el.dateText = this.getDateStr(el.date);
+              el.dateText = this.getDateStr(el.createDate);
               el.logo = this.getLogoUrl(1, 50, "static/images/list/");
             });
 
-            if (this.total > 5) {
-              this.pageShow = true;
+            if (this.page.total > this.page.pageRow) {
+              this.page.pageShow = true;
             } else {
-              this.pageShow = false;
+              this.page.pageShow = false;
             }
           } else {
             this.articleList = [];

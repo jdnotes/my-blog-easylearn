@@ -13,6 +13,8 @@ import NotFound from '@/components/pub/404.vue'
 Vue.use(Router)
 
 export default new Router({
+  base: '/',
+  mode: 'history',
   routes: [
     {
       path: '/',

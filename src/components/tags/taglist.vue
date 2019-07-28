@@ -12,13 +12,16 @@
               <h2 class="uk-h3 uk-margin-bottom">
                 <!--<a href="#">{{article.title}}</a>-->
               </h2>
-              <div class="article-content">
+              <div>
                 <p v-html="article.articleSection"></p>
               </div>
               <div>
                 <a class="button-link uk-text-small" href="javascript: void(0)"
                    @click="goInfo(article.id)">Read more</a>
               </div>
+            </article>
+            <article class="uk-article" v-if="noData">
+              {{noDataText}}
             </article>
           </div>
           <div class="uk-width-1-4@m uk-visible@m">
@@ -38,8 +41,8 @@
       </div>
     </section>
     <div class="uk-container">
-      <Pager :totalRecords="total" :currentPage='page.currentPage' @pageChange="page.pageChange"
-             v-if="page.pageShow"></Pager>
+      <Pager :totalRecords="page.total" :currentPage='page.currentPage' :pageRow='page.pageRow'
+             @pageChange="pageChange" v-if="page.pageShow"></Pager>
 
       <div class="uk-grid-large uk-flex-middle uk-margin-large-top uk-margin-large-bottom"
            data-uk-grid data-uk-scrollspy="cls: uk-animation-slide-bottom; repeat: true">
@@ -55,18 +58,20 @@
   import Nav from "../pub/nav";
   import Search from "../pub/search";
   import Footer from "../pub/footer";
+  import Pager from "../pub/pager";
 
   export default {
     name: 'taglist',
-    components: {Footer, Search, Nav},
+    components: {Footer, Search, Nav, Pager},
     data() {
       return {
+        noDataText: '暂无更新内容,看看最新推荐吧',
+        noData: false,
         page: {
           currentPage: 1,
-          pageRows: 10,
+          pageRow: 5,
           total: 0,
           noDataShow: false,
-          noDataText: '暂无内容,看看最新推荐吧',
           pageShow: false,
         },
         articleList: [],
@@ -90,11 +95,10 @@
         })
       },
       loadArticleList() {
-        let param = this.$route.params;
+        let param = this.$route.query;
         let tags = param.tags;
-        let keyword = param.keyword;
-        console.log(tags,keyword);
-        this.pageChange(1, tags, keyword);
+        let keywords = param.keyword;
+        this.pageChange(1, tags, keywords);
       },
       goInfo(id) {
         if (id == null) {
@@ -105,20 +109,22 @@
       pageChange(curPage, tags, keyword) {
         this.http.post(this.ports.article.search, {
           currentPage: curPage,
+          pageRow: this.page.pageRow,
           tags: tags,
           keywords: keyword
         }, res => {
           if (res.success) {
             let datas = res.data.results;
             this.articleList = datas.records;
-            this.currentPage = datas.currentPage;
-            this.total = datas.totalRecords;
-            if (this.total > 10) {
+            this.page.currentPage = datas.currentPage;
+            this.page.total = datas.totalRecords;
+            if (this.page.total > this.page.pageRow) {
               this.page.pageShow = true;
-            } else if (this.total > 0) {
+            } else if (this.page.total > 0) {
               this.page.pageShow = false;
             } else {
               this.page.pageShow = false;
+              this.noData = true;
             }
           } else {
             this.articleList = [];
