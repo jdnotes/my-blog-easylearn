@@ -107,6 +107,16 @@
         this.$router.push({path: '/info/' + id});
       },
       pageChange(curPage, tags, keyword) {
+        let param = this.$route.query;
+        if (param != null) {
+          if (param.tags != null) {
+            tags = param.tags;
+          }
+          if (param.keyword != null) {
+            keyword = param.keyword;
+          }
+        }
+
         this.http.post(this.ports.article.search, {
           currentPage: curPage,
           pageRow: this.page.pageRow,
