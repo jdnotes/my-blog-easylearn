@@ -10,9 +10,9 @@
           <div class="uk-width-expand@m padding-right@m padding-large-right@l">
             <article class="uk-article" v-for="article in articleList">
               <h2 class="uk-h3 uk-margin-bottom">
-                <!--<a href="#">{{article.title}}</a>-->
+                <a href="javascript: void(0)" @click="goInfo(article.id)">{{article.title}}</a>
               </h2>
-              <div>
+              <div class="article-content">
                 <p v-html="article.articleSection"></p>
               </div>
               <div>
