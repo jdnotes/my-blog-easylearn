@@ -67,6 +67,8 @@
       return {
         noDataText: '暂无更新内容,看看最新推荐吧',
         noData: false,
+        tags: '',
+        keywords: '',
         page: {
           currentPage: 1,
           pageRow: 5,
@@ -95,10 +97,12 @@
         })
       },
       loadArticleList() {
-        let param = this.$route.query;
-        let tags = param.tags;
-        let keywords = param.keyword;
-        this.pageChange(1, tags, keywords);
+        let param = this.$route.params;
+        if (param != null) {
+          this.tags = param.tags;
+          this.keywords = param.keyword;
+        }
+        this.pageChange(1, this.tags, this.keywords);
       },
       goInfo(id) {
         if (id == null) {
@@ -107,14 +111,11 @@
         this.$router.push({path: '/info/' + id});
       },
       pageChange(curPage, tags, keyword) {
-        let param = this.$route.query;
-        if (param != null) {
-          if (param.tags != null) {
-            tags = param.tags;
-          }
-          if (param.keyword != null) {
-            keyword = param.keyword;
-          }
+        if (tags == null || tags == '') {
+          tags = this.tags;
+        }
+        if (keyword == null || keyword == '') {
+          keyword = this.keywords;
         }
 
         this.http.post(this.ports.article.search, {

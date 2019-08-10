@@ -6,32 +6,30 @@
     <nav>
       <div>
         <div>
-          <strong>标题:</strong><input v-model="title" placeholder="请输入标题">
+          <strong>标题:<br></strong><input v-model="title" placeholder="请输入标题">
           <br>
-          <strong>二级标题:</strong><input v-model="secondTitle" placeholder="请输入二级标题">
-          <br>
-          <strong>logo:</strong><input v-model="logo" placeholder="请输入logo地址">
+          <strong>二级标题:<br></strong><input v-model="secondTitle" placeholder="请输入二级标题">
         </div>
         <div>
-          <strong>标签:</strong><span v-for="firstTag in tags">
+          <strong>标签:<br></strong><span v-for="firstTag in tags">
           <input type="radio" :value="firstTag.code" v-model="tagValue">
           <label>{{firstTag.tagName}}</label>
         </span>
         </div>
         <div>
-          <strong>级别:</strong><span v-for="at in levelArr">
+          <strong>级别:<br></strong><span v-for="at in levelArr">
           <input type="radio" :value="at.id" v-model="level">
           <label>{{at.name}}</label>
         </span>
         </div>
         <div>
-          <strong>热门类型:</strong><span v-for="at in hotArr">
+          <strong>热门类型:<br></strong><span v-for="at in hotArr">
           <input type="radio" :value="at.id" v-model="hot">
           <label>{{at.name}}</label>
         </span>
         </div>
         <div>
-          <strong>优质类型:</strong><span v-for="at in qualityArr">
+          <strong>优质类型:<br></strong><span v-for="at in qualityArr">
           <input type="radio" :value="at.id" v-model="quality">
           <label>{{at.name}}</label>
         </span>
@@ -143,7 +141,6 @@
               if (datas != null) {
                 this.title = datas.title;
                 this.secondTitle = datas.secondTitle;
-                this.logo = datas.logo;
                 this.level = datas.level;
                 this.mdText = datas.articleMarkdown;
                 this.tagValue = datas.tag;

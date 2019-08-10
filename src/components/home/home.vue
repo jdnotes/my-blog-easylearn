@@ -163,9 +163,7 @@
         this.$router.push({path: '/info/' + id});
       },
       search(curPage, tags, keyword) {
-        //跳转taglist页面
-        //this.$router.push({name: 'taglist', params: {tags: tags, keyword: keyword}});
-        this.$router.push({path: '/taglist', query: {tags: tags, keyword: keyword}});
+        this.$router.push({name: 'taglist', params: {tags: tags, keyword: keyword}});
       },
       pageChange(curPage, tags, keyword) {
         this.http.post(this.ports.article.search, {
@@ -214,7 +212,7 @@
         times = parseInt(times / 1000);
         let diff = (timestamp - times) / 60;
         if (diff > 0 && diff < 60) {
-          return parseInt(diff) + "分钟前";
+          return parseInt(diff) == 0 ? 1 : parseInt(diff) + "分钟前";
         } else if (diff >= 60 && diff <= 1440) {
           return parseInt(diff / 60) + "小时前";
         } else if (diff > 1440 && diff < 4320) {

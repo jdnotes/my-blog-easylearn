@@ -86,8 +86,8 @@
           }
         })
       },
-      goList(id) {
-        this.$router.push({path: '/taglist', query: {tags: id}});
+      goList(tags) {
+        this.$router.push({name: 'taglist', params: {tags: tags, keyword: ''}});
       }
     }
   }

@@ -15,13 +15,13 @@
           <div>
             <ul class="uk-list uk-list-large">
               <li>欢迎关注我的微信</li>
-              <li><img src="static/images/wx/wx.jpg" alt="微信号"></li>
+              <li><img src="http://cdn.jdbiji.com/others/wx.jpg" alt="微信号"></li>
             </ul>
           </div>
           <div>
             <ul class="uk-list uk-list-large">
               <li>随时关注我的公众号</li>
-              <li><img src="static/images/wx/gzh.jpg" alt="公众号"></li>
+              <li><img src="http://cdn.jdbiji.com/others/gzh.jpg" alt="公众号"></li>
             </ul>
           </div>
         </div>
