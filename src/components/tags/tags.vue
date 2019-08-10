@@ -78,9 +78,6 @@
           if (res.success) {
             let datas = res.data.results;
             this.tags = datas;
-            this.tags.forEach(el => {
-              el.icon = "static/images/tags/" + el.icon + ".png";
-            });
           } else {
             this.tags = [];
           }

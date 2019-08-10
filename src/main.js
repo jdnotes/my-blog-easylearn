@@ -9,8 +9,6 @@ import VueRouter from 'vue-router'
 import awesomplete from './assets/js/awesomplete.js'
 import theme from './assets/js/theme.js'
 
-import JsEncrypt from 'jsencrypt'
-
 import http from './script/http'
 import ports from './script/ports'
 
@@ -20,7 +18,6 @@ import 'mavon-editor/dist/css/index.css'
 Vue.config.productionTip = false
 Vue.prototype.http = http
 Vue.prototype.ports = ports
-Vue.prototype.$jsEncrypt = JsEncrypt
 
 Vue.use(VueRouter)
 Vue.use(mavonEditor)

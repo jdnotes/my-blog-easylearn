@@ -94,13 +94,6 @@
         this.reload();
         this.$router.push({path: '/info/' + id});
       },
-      rsaDecryptData(encrypted) {
-        //RSA解密
-        let jse = new JSEncrypt();
-        jse.setPrivateKey(this.privateKey);
-        let decrypted = jse.decrypt(encrypted);
-        return decrypted;
-      },
       aesDecryptData(encryptStr) {
         // AES解密
         let decryptStr = Decrypt(encryptStr);
