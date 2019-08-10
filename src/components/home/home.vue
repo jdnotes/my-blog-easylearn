@@ -151,7 +151,6 @@
           if (res.success) {
             let datas = res.data.results;
             this.recent = datas;
-            this.recent.logo = this.getLogoUrl(1, 13, "static/images/top/");
             this.recent.dateText = this.getDateStr(this.recent.date);
           }
         })
@@ -180,7 +179,6 @@
 
             this.articleList.forEach(el => {
               el.dateText = this.getDateStr(el.createDate);
-              el.logo = this.getLogoUrl(1, 50, "static/images/list/");
             });
 
             if (this.page.total > this.page.pageRow) {
