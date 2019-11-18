@@ -207,18 +207,26 @@
         let timestamp = Date.parse(new Date());
         timestamp = timestamp / 1000;
         //过期时间
-        times = parseInt(times / 1000);
-        let diff = (timestamp - times) / 60;
+        let t = parseInt(times / 1000);
+        let diff = (timestamp - t) / 60;
         if (diff > 0 && diff < 60) {
           return parseInt(diff) == 0 ? 1 : parseInt(diff) + "分钟前";
         } else if (diff >= 60 && diff <= 1440) {
           return parseInt(diff / 60) + "小时前";
-        } else if (diff > 1440 && diff < 4320) {
-          return parseInt(diff / 60 / 24) + "天前";
-        } else if (diff > 4320) {
+        } else if (diff > 1440) {
+          let date = new Date(times);
+          let Y = date.getFullYear() + '-';
+          let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+          let D = date.getDate() + ' ';
+          let h = date.getHours() + ':';
+          let m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+          //let m = date.getMinutes() + ':';
+          //let s = date.getSeconds();
+          let day = Y + M + D + h + m;
+          return day;
+        } else {
           return "3天前";
         }
-        return "1天前";
       }
     }
   }
