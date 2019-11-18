@@ -210,7 +210,8 @@
         let t = parseInt(times / 1000);
         let diff = (timestamp - t) / 60;
         if (diff > 0 && diff < 60) {
-          return parseInt(diff) == 0 ? 1 : parseInt(diff) + "分钟前";
+          let day = parseInt(diff) == 0 ? 1 : parseInt(diff);
+          return day + "分钟前";
         } else if (diff >= 60 && diff <= 1440) {
           return parseInt(diff / 60) + "小时前";
         } else if (diff > 1440) {
