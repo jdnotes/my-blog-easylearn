@@ -16,9 +16,9 @@
             <li>
               <router-link :to="{path:'/home'}">传送门</router-link>
             </li>
-            <li>
+            <!--<li>
               <router-link :to="{path:'/contact'}">留言</router-link>
-            </li>
+            </li>-->
             <li>
               <router-link :to="{path:'/about'}">关于我</router-link>
             </li>
@@ -42,9 +42,9 @@
           <li>
             <router-link :to="{path:'/home'}">传送门</router-link>
           </li>
-          <li>
+          <!--<li>
             <router-link :to="{path:'/contact'}">留言</router-link>
-          </li>
+          </li>-->
           <li>
             <router-link :to="{path:'/about'}">关于我</router-link>
           </li>
