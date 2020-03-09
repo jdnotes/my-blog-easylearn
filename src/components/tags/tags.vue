@@ -6,10 +6,11 @@
     <div class="uk-background-muted">
       <div class="uk-container">
         <div class="uk-margin">
-          <form class="uk-search uk-search-default uk-width-1-1 awesomplete">
-            <a href="" class="uk-search-icon-flip" data-uk-search-icon></a>
-            <input id="search" class="uk-search-input uk-search-default uk-width-1-1 uk-form-large" type="search"
-                   placeholder="Search" autocomplete="off" data-minchars="1" data-maxitems="30">
+          <form class="uk-search uk-search-default uk-width-1-1 awesomplete" @submit.prevent="search">
+            <a href="javascript: void(0)" @click="search" class="uk-search-icon-flip" data-uk-search-icon></a>
+            <input id="search" type="search" autocomplete="off"
+                   class="uk-search-input uk-search-default uk-width-1-1 uk-form-large"
+                   v-model="keywords" placeholder="请输入关键字词">
           </form>
         </div>
       </div>
@@ -66,6 +67,7 @@
     },
     data() {
       return {
+        keywords: '',
         tags: []
       }
     },
@@ -84,7 +86,13 @@
         })
       },
       goList(tags) {
-        this.$router.push({name: 'taglist', params: {tags: tags, keyword: ''}});
+        //this.$router.push({name: 'taglist', params: {tags: tags, keyword: ''}});
+        //this.$router.push({name: 'taglist', query: {tags: tags}});
+        this.$router.push({path: '/list/' + tags});
+      },
+      search(curPage, tags, keyword) {
+        keyword = this.keywords;
+        this.$router.push({name: 'taglist', query: {keyword: keyword}});
       }
     }
   }

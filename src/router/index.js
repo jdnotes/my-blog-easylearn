@@ -32,6 +32,11 @@ export default new Router({
       component: Info
     },
     {
+      path: '/info', //详情跳转新页面
+      name: 'infoBlank',
+      component: Info
+    },
+    {
       path: '/about',
       name: 'about',
       component: About
@@ -44,6 +49,11 @@ export default new Router({
     {
       path: '/taglist',
       name: 'taglist',
+      component: TagList
+    },
+    {
+      path: '/list/:tags',
+      name: 'list',
       component: TagList
     },
     {

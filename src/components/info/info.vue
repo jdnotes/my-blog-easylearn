@@ -62,7 +62,10 @@
         this.loadDetails();
       },
       loadDetails() {
-        let id = this.$route.params.id;
+        //http://www.jdbiji.com/info/pc6qox1v9d 形式接收参数
+        //let id = this.$route.params.id;
+        //http://www.jdbiji.com/info?id=pc6qox1v9d 形式接收参数
+        let id = this.$route.query.id;
         this.http.post(this.ports.article.details, {
           id: id
         }, res => {
@@ -92,7 +95,9 @@
           return;
         }
         this.reload();
-        this.$router.push({path: '/info/' + id});
+        //this.$router.push({path: '/info/' + id});
+        let routes = this.$router.resolve({name: "infoBlank", query: {id: id}});
+        window.open(routes.href, '_blank');
       },
       aesDecryptData(encryptStr) {
         // AES解密

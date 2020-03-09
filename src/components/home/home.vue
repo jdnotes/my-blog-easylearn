@@ -159,10 +159,14 @@
         if (id == null) {
           return;
         }
-        this.$router.push({path: '/info/' + id});
+        //this.$router.push({path: '/info/' + id});
+        //路由跳转 打开新页面
+        let routes = this.$router.resolve({name: "infoBlank", query: {id: id}});
+        window.open(routes.href, '_blank');
       },
       search(curPage, tags, keyword) {
-        this.$router.push({name: 'taglist', params: {tags: tags, keyword: keyword}});
+        //this.$router.push({name: 'taglist', params: {tags: tags, keyword: keyword}});
+        this.$router.push({name: 'taglist', query: {keyword: keyword}});
       },
       pageChange(curPage, tags, keyword) {
         this.http.post(this.ports.article.search, {

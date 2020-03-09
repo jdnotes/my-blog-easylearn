@@ -97,7 +97,8 @@
         })
       },
       loadArticleList() {
-        let param = this.$route.params;
+        //let param = this.$route.params;
+        let param = this.$route.query;
         if (param != null) {
           this.tags = param.tags;
           this.keywords = param.keyword;
@@ -108,7 +109,9 @@
         if (id == null) {
           return;
         }
-        this.$router.push({path: '/info/' + id});
+        //this.$router.push({path: '/info/' + id});
+        let routes = this.$router.resolve({name: "infoBlank", query: {id: id}});
+        window.open(routes.href, '_blank');
       },
       pageChange(curPage, tags, keyword) {
         if (tags == null || tags == '') {
@@ -143,6 +146,9 @@
         })
       },
       search(curPage, tags, keyword) {
+        if (keyword != null && keyword != '') {
+          this.keywords = keyword;
+        }
         this.pageChange(curPage, tags, keyword);
       }
     }
