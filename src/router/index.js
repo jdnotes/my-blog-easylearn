@@ -52,11 +52,6 @@ export default new Router({
       component: TagList
     },
     {
-      path: '/list/:tags',
-      name: 'list',
-      component: TagList
-    },
-    {
       path: '/contact',
       name: 'contact',
       component: Contact

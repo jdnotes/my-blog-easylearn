@@ -87,8 +87,8 @@
       },
       goList(tags) {
         //this.$router.push({name: 'taglist', params: {tags: tags, keyword: ''}});
-        //this.$router.push({name: 'taglist', query: {tags: tags}});
-        this.$router.push({path: '/list/' + tags});
+        this.$router.push({name: 'taglist', query: {tags: tags}});
+        //this.$router.push({path: '/list/' + tags});
       },
       search(curPage, tags, keyword) {
         keyword = this.keywords;
