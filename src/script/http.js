@@ -31,7 +31,7 @@ function handleResults(response) {
       console.log('传参错误')
     }
     result.errorCode = remoteResponse.errorCode
-    result.message = remoteResponse.message
+    result.message = remoteResponse.msg
   }
   return result
 }

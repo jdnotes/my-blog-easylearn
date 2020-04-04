@@ -35,15 +35,13 @@
         </span>
         </div>
         <div>
-          <strong>name:</strong><input v-model="username" placeholder="请输入口令">
-          <br>
-          <strong>pwd:</strong><input v-model="password" placeholder="请输入口令">
+          <strong>口令:</strong><input v-model="publishWord" placeholder="请输入口令">
         </div>
       </div>
       <div>
-        <h3>草稿列表</h3>
-        <a href="#">搭建我的博客之vue配置404页面(八)</a><br>
-        <a href="#">学习最重要是方法，管理最重要是高度</a>
+        <h3></h3>
+        <span>{{otherCode}}</span><br>
+        <a href="#"></a>
       </div>
     </nav>
     <section>
@@ -59,8 +57,8 @@
     data() {
       return {
         title: "",
-        username: "",
-        password: "",
+        publishWord: "",
+        otherCode: "",
         secondTitle: "",
         logo: "",
         level: "",
@@ -123,6 +121,8 @@
       loadAll() {
         this.setFullScreen();
 
+        this.otherCode = this.randomString(10);
+
         this.http.post(this.ports.tag.cloud, {}, res => {
           if (res.success) {
             let datas = res.data.results;
@@ -161,14 +161,14 @@
           articleHtml: render,
           quality: this.quality,
           hot: this.hot,
-          username: this.username,
-          password: this.password
+          publishWord: this.publishWord
         }, res => {
           if (res.success) {
             //let datas = res.data.results;
             //console.log(datas);
           } else {
-            console.log(res.message);
+            //console.log(res.message);
+            alert(res.message);
           }
         })
       },
@@ -188,6 +188,16 @@
         //let fullScreen = this.$refs.editor.s_fullScreen;
         //console.log(fullScreen);
         this.$refs.editor.s_fullScreen = true;
+      },
+      randomString(len) {
+        len = len || 32;
+        let chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        var maxPos = chars.length;
+        var randomStr = "";
+        for (let i = 0; i < len; i++) {
+          randomStr += chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        return randomStr;
       }
     }
   }
